@@ -51,6 +51,7 @@ Done. Now run:
   cd frontend
   npm install
   npm run dev
+  npm run dev -- --host
 ```
 
 
@@ -103,6 +104,18 @@ The input variables, with their default values (some auto generated) are:
 
 todo: 把这个作为一个模板项目用于新项目架构的生成.
 This repository also supports generating a new project using [Copier](https://copier.readthedocs.io).
+
+
+## vscode
+
+### python
+
+在 uv sync 之后， 在 vscode 中命令面板(ctrl+shift+p或者F1) select interpreter, 然后把 backend/.venv/bin/python 选择项目默认解释器。
+这样就可以在 vscode 中导航代码了.
+
+
+
+
 
 ## 参考资料
 

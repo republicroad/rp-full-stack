@@ -18,6 +18,7 @@ From `./backend/` you can install all the dependencies with:
 ```console
 $ uv sync
 ```
+注意，python虚拟环境安装到了 backend 目录下面. 需要把这个目录下面的python设置为项目的python解释器.
 
 Then you can activate the virtual environment with:
 
@@ -30,6 +31,10 @@ Make sure your editor is using the correct Python virtual environment, with the 
 Modify or add SQLModel models for data and SQL tables in `./backend/app/models.py`, API endpoints in `./backend/app/api/`, CRUD (Create, Read, Update, Delete) utils in `./backend/app/crud.py`.
 
 ## VS Code
+
+在 uv sync 之后， 在 vscode 中命令面板(ctrl+shift+p或者F1) select interpreter, 然后把 backend/.venv/bin/python 选择项目默认解释器。
+这样就可以在 vscode 中导航代码了.
+
 
 There are already configurations in place to run the backend through the VS Code debugger, so that you can use breakpoints, pause and explore variables, etc.
 
