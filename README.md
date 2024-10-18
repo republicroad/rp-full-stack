@@ -54,6 +54,11 @@ Done. Now run:
   npm run dev -- --host
 ```
 
+### chakra-templates
+
+实际中为了加速web页面的开发, 可以使用 [chakra-templates](https://chakra-templates.vercel.app/page-sections/hero) 来寻找可用的UI组件.
+
+
 
 ### react router
 
@@ -119,4 +124,7 @@ This repository also supports generating a new project using [Copier](https://co
 
 ## 参考资料
 
-https://blog.logrocket.com/build-react-typescript-app-vite/
+https://blog.logrocket.com/build-react-typescript-app-vite/  
+
+react 组件 动态导入 css 模块:  
+https://stackoverflow.com/questions/59897466/dynamically-imported-css-file-getting-not-getting-deferred-when-using-typescript  

@@ -43,6 +43,12 @@ export default function Root() {
     useEffect(() => {
       (document.getElementById("q") as HTMLInputElement).value = q;
     }, [q]);
+    useEffect(() => {
+      (async () => {
+        await import('../index.css');
+        console.log('index.css');
+      })();
+    }, []);
 
     // const [query, setQuery] = useState(q);
     // useEffect(() => {

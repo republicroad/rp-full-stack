@@ -5,7 +5,10 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import "./index.css";
+// import "./index.css"; //避免全局加载样式文件.
+import { ChakraProvider } from '@chakra-ui/react'
+import theme from "./theme"
+// import { baseTheme as theme} from '@chakra-ui/theme'
 
 import Index from "./routes/index";
 import Root, {
@@ -24,10 +27,35 @@ import EditContact, {
 
 import { action as destroyAction } from "./routes/destroy";
 import ErrorPage  from "./pages/error-page";
-import {router_tsx} from "./App";
+import Login from "./pages/login";
+import Signup from "./pages/signup";
+import ForgotPasswordForm from "./pages/forgotpassword";
+import ResetPasswordForm from "./pages/resetpassword";
+import VerifyEmailForm from "./pages/verify_email";
+// import {router_tsx} from "./App";
 
 
 const router = createBrowserRouter([
+  {
+    path: "/login",
+    element: <Login />, //  <div>Hello world! fccdjny</div>,
+  },
+  {
+    path: "/signup",
+    element: <Signup />, //  <div>Hello world! fccdjny</div>,
+  },
+  {
+    path: "/forgotpasswd",
+    element: <ForgotPasswordForm />, //  <div>Hello world! fccdjny</div>,
+  },
+  {
+    path: "/resetpasswd",
+    element: <ResetPasswordForm />, //  <div>Hello world! fccdjny</div>,
+  },
+  {
+    path: "/verifyemail",
+    element: <VerifyEmailForm />, //  <div>Hello world! fccdjny</div>,
+  },
   {
     path: "/",
     element: <Root />, //  <div>Hello world! fccdjny</div>,
@@ -61,9 +89,20 @@ const router = createBrowserRouter([
 // ReactDOM.createRoot(document.getElementById('root')!).render(<></>);  fix type error
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ChakraProvider theme={theme}>
+      <RouterProvider router={router} />
+    </ChakraProvider>
   </React.StrictMode>
 );
+
+
+{/* <StrictMode>
+<ChakraProvider theme={theme}>
+  <QueryClientProvider client={queryClient}>
+    <RouterProvider router={router} />
+  </QueryClientProvider>
+</ChakraProvider>
+</StrictMode>, */}
 
 // 2. router by tsx
 // ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
