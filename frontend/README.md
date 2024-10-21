@@ -51,3 +51,6 @@ export default tseslint.config({
   },
 })
 ```
+
+本地状态保存 demo:
+localforage

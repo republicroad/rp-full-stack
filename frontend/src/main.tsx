@@ -10,28 +10,21 @@ import { ChakraProvider } from '@chakra-ui/react'
 import theme from "./theme"
 // import { baseTheme as theme} from '@chakra-ui/theme'
 
-import Index from "./routes/index";
-import Root, {
-    loader as rootLoader,
-    action as rootAction,
-  } from "./routes/root";
+import Root from "./routes/root";
 
-import Contact, {
-    loader as contactLoader,
-    action as contactAction,
-  } from "./routes/contact";
-
-import EditContact, {
-    action as editAction,
-  } from "./routes/edit";
-
-import { action as destroyAction } from "./routes/destroy";
+import Index from "./pages";
 import ErrorPage  from "./pages/error-page";
 import Login from "./pages/login";
 import Signup from "./pages/signup";
 import ForgotPasswordForm from "./pages/forgotpassword";
 import ResetPasswordForm from "./pages/resetpassword";
 import VerifyEmailForm from "./pages/verify_email";
+import SidebarWithHeader from "./components/sidebar";
+
+import Home from "./pages/home";
+import Trending,{
+  loader as trendingLoader,
+} from "./pages/trending";
 // import {router_tsx} from "./App";
 
 
@@ -57,30 +50,27 @@ const router = createBrowserRouter([
     element: <VerifyEmailForm />, //  <div>Hello world! fccdjny</div>,
   },
   {
+    path: "/sidebar",
+    element: <SidebarWithHeader />, //  <div>Hello world! fccdjny</div>,
+  },
+  {
     path: "/",
     element: <Root />, //  <div>Hello world! fccdjny</div>,
-    errorElement: <ErrorPage />,
-    loader: rootLoader,
-    action: rootAction,
+    errorElement: <ErrorPage />,  // errorElement: <div>Oops! There was an error.</div>,
+    // loader: rootLoader,
+    // action: rootAction,
     children: [
-      { index: true, element: <Index /> },
+        { index: true, element: <Index /> },
         {
-          path: "contacts/:contactId",
-          element: <Contact />,
-          loader: contactLoader,
-          action: contactAction,
+          path: "home",
+          element: <Home />,
         },
         {
-          path: "contacts/:contactId/edit",
-          element: <EditContact />,
-          loader: contactLoader,
-          action: editAction,
+          path: "trending",
+          element: <Trending />,
+          loader: trendingLoader,
         },
-        {
-          path: "contacts/:contactId/destroy",
-          action: destroyAction,
-          errorElement: <div>Oops! There was an error.</div>,
-        },
+
       ],
   },
 ]);
@@ -94,7 +84,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     </ChakraProvider>
   </React.StrictMode>
 );
-
 
 {/* <StrictMode>
 <ChakraProvider theme={theme}>
