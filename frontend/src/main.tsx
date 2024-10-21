@@ -14,7 +14,7 @@ import Root from "./routes/root";
 
 import Index from "./pages";
 import ErrorPage  from "./pages/error-page";
-import Login from "./pages/login";
+import Login, {action as loginAction} from "./pages/login";
 import Signup from "./pages/signup";
 import ForgotPasswordForm from "./pages/forgotpassword";
 import ResetPasswordForm from "./pages/resetpassword";
@@ -32,6 +32,7 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />, //  <div>Hello world! fccdjny</div>,
+    action: loginAction,
   },
   {
     path: "/signup",

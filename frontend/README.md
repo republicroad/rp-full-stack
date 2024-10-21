@@ -52,5 +52,13 @@ export default tseslint.config({
 })
 ```
 
-本地状态保存 demo:
-localforage
+## tips
+
+- react router Form 组件阻止了浏览器把请求发到服务器, 而是转发到 route 中的 action 回调函数上.
+
+https://reactrouter.com/en/main/start/tutorial#creating-contacts:~:text=%3CForm%3E%20prevents%20the%20browser%20from%20sending%20the%20request%20to%20the%20server%20and%20sends%20it%20to%20your%20route%20action%20instead
+
+- 组件的函数命名需要以大写字母开头
+- 本地状态保存 demo:
+    localforage  
+    redux  
