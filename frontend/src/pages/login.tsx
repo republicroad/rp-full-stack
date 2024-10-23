@@ -12,23 +12,25 @@ import {
   Heading,
   Text,
   useColorModeValue,
+  Link,
 } from '@chakra-ui/react'
 import {
   Navigate,
   useLocation,
+  Link as RRLink,
   Form,
   redirect,
 } from "react-router-dom";
 
 export async function action({ request, params }:any) {
-  // const formData = await request.formData();
-  // const updates = Object.fromEntries(formData);
-  // await updateContact(params.contactId, updates);
-  // return redirect(`/contacts/${params.contactId}`);
-  console.log("request:", request);
-  console.log("params:", params);
-  return redirect("/");
 
+  console.log("request:", request);
+  console.log("params:", params);  // 路径参数
+  const formData = await request.formData();
+  const entries = Object.fromEntries(formData);
+  console.log("formDatas:", entries);
+  // window.bform = formData; // 技巧，可以在浏览器 console 调试此对象.
+  return redirect("/");
 }
 
 export default function Login() {
@@ -54,11 +56,11 @@ export default function Login() {
             <Form method="post">
               <FormControl id="email">
                 <FormLabel>Email address</FormLabel>
-                <Input type="email" />
+                <Input type="email" name="email"/>
               </FormControl>
               <FormControl id="password">
                 <FormLabel>Password</FormLabel>
-                <Input type="password" />
+                <Input type="password" name="password"/>
               </FormControl>
               <Stack spacing={10}>
                 <Stack
@@ -66,7 +68,7 @@ export default function Login() {
                   align={'start'}
                   justify={'space-between'}>
                   <Checkbox>Remember me</Checkbox>
-                  <Text color={'blue.400'}>Forgot password?</Text>
+                  <RRLink to="/forgotpasswd" replace={true}><Text color={'blue.400'}>Forgot password?</Text></RRLink> 
                 </Stack>
                 <Button
                   type="submit"
@@ -78,9 +80,14 @@ export default function Login() {
                   Sign in
                 </Button>
               </Stack>
-              {/* <button type="submit">New</button> */}
+              
             </Form>
           </Stack>
+          <Stack pt={6}>
+              <Text align={'center'}>
+                Already a user?<Link color={'blue.400'}><RRLink to="/signup" replace={true}> Signup </RRLink></Link>
+              </Text>
+            </Stack>
         </Box>
       </Stack>
     </Flex>
