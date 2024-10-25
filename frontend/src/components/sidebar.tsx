@@ -98,6 +98,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
               }}
             >
               {link.name}</NavLink>
+            // <Link to={link.name.toLowerCase()}>{link.name}</Link>
           }
         </NavItem>
       ))}

@@ -16,24 +16,57 @@ import {
 } from '@chakra-ui/react'
 import {
   Navigate,
+  useNavigate,
   useLocation,
   Link as RRLink,
   Form,
   redirect,
 } from "react-router-dom";
+import { useAuth } from '../provider/authProvider';
 
-export async function action({ request, params }:any) {
 
+export const action = ({ loginCallback }:any) => async ({ request, params }: any) => {
   console.log("request:", request);
   console.log("params:", params);  // 路径参数
   const formData = await request.formData();
   const entries = Object.fromEntries(formData);
   console.log("formDatas:", entries);
-  // window.bform = formData; // 技巧，可以在浏览器 console 调试此对象.
-  return redirect("/");
-}
+  // call login, and redirect upon success
+  console.log("action loginCallback:", loginCallback);
+  await loginCallback(formData["email"], formData["password"]);
+  // 根据结果登录成功进入 index 路由，否则 altert 信息.
+  return redirect('/');
+};
+
+// export async function action({ request, params }:any) {
+//   console.log("request:", request);
+//   console.log("params:", params);  // 路径参数
+//   const formData = await request.formData();
+//   const entries = Object.fromEntries(formData);
+//   console.log("formDatas:", entries);
+//   // window.bform = formData; // 技巧，可以在浏览器 console 调试此对象.
+//   // const navigate = useNavigate();
+//   const { setToken }: any = useAuth();
+//   // setToken("jwt_token");
+//   // const handleLogin = () => {
+//   //   setToken("this is a test token");
+//   //   navigate("/", { replace: true });
+//   // };
+//   return redirect("/");
+// }
 
 export default function Login() {
+  const { setToken, handleLogin }: any = useAuth();
+  // const navigate = useNavigate();
+  console.log("login func:", handleLogin);
+  
+  // setToken("jwt_token");
+  // const handleLogin = () => {
+  //   setToken("this is a test token");
+  //   // navigate("/", { replace: true });
+  //   redirect("/");
+  // };
+
   return (
     <Flex
       minH={'100vh'}

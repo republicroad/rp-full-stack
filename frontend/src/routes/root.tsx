@@ -1,4 +1,5 @@
 // import { useEffect, useState } from "react";
+import { ProtectedRoute } from "./ProtectedRoute";
 import {
     useNavigation,
   } from "react-router-dom";
@@ -13,8 +14,10 @@ export default function Root() {
 
   return (
     <>
-      <SidebarWithHeader>
-      </SidebarWithHeader>
+      <ProtectedRoute>
+        <SidebarWithHeader>
+        </SidebarWithHeader>
+      </ProtectedRoute>
     </>
   );
 
