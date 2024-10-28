@@ -2,6 +2,7 @@
 import { ProtectedRoute } from "./ProtectedRoute";
 import {
     useNavigation,
+    Outlet,
   } from "react-router-dom";
 import SidebarWithHeader from "../pages/layout/sidebar";
 
@@ -16,6 +17,7 @@ export default function Root() {
     <>
       <ProtectedRoute>
         <SidebarWithHeader>
+          <Outlet></Outlet>
         </SidebarWithHeader>
       </ProtectedRoute>
     </>

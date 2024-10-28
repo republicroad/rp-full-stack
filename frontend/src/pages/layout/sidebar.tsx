@@ -218,7 +218,13 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
   )
 }
 
-const SidebarWithHeader = () => {
+const SidebarWithHeader = (
+  {
+    children,
+  }: {
+    children: JSX.Element;
+  }
+) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
@@ -239,7 +245,8 @@ const SidebarWithHeader = () => {
       <MobileNav onOpen={onOpen} />
       <Box ml={{ base: 0, md: 60 }} p="4">
         {/* Content */}
-        <Outlet/>
+        {/* <Outlet/> */}
+        {children}
       </Box>
     </Box>
   )
