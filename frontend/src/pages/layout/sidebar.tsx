@@ -38,6 +38,8 @@ import {
   Link,
   NavLink,
 } from "react-router-dom";
+import { useAuth } from '../../provider/authProvider';
+
 
 interface LinkItemProps {
   name: string
@@ -143,6 +145,8 @@ const NavItem = ({ icon, children, ...rest }: NavItemProps) => {
 }
 
 const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
+  const { handleLogOut }: any = useAuth();
+
   return (
     <Flex
       ml={{ base: 0, md: 60 }}
@@ -204,7 +208,8 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
               <MenuItem>Settings</MenuItem>
               <MenuItem>Billing</MenuItem>
               <MenuDivider />
-              <MenuItem>Sign out</MenuItem>
+              <MenuItem onClick={handleLogOut}>Sign out</MenuItem>
+
             </MenuList>
           </Menu>
         </Flex>

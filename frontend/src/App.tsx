@@ -15,7 +15,7 @@ import Signup, {action as SignupAction} from "./pages/signup";
 import ForgotPasswordForm from "./pages/forgotpassword";
 import ResetPasswordForm from "./pages/resetpassword";
 import VerifyEmailForm from "./pages/verify_email";
-import SidebarWithHeader from "./components/sidebar";
+import SidebarWithHeader from "./pages/layout/sidebar";
 
 import Home from "./pages/home";
 import Trending,{

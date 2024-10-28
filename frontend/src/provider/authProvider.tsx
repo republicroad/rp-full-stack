@@ -1,12 +1,15 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { redirect } from "react-router-dom";
 import { fakeNetResult } from "../utils/fakeTools";
 
 const AuthContext = createContext({});
 
 const AuthProvider = ({ children }:any) => {
   // State to hold the authentication token
-  const [token, setToken_] = useState(localStorage.getItem("token"));
+  // const navigate = useNavigate(); // useNavigate() may be used only in the context of a <Router> component.
+  const tokenKey: string = "authToken";
+  const [token, setToken_] = useState(localStorage.getItem(tokenKey) || "");
 
   // Function to set the authentication token
   const setToken = (newToken:any) => {
@@ -17,12 +20,23 @@ const AuthProvider = ({ children }:any) => {
     // login 需要在 hook 使用时导出，需要对代码进行重构.
     // https://stackoverflow.com/questions/74296504/invoke-hook-from-react-router-data-router-action
     // https://stackoverflow.com/questions/76766824/passing-a-function-to-a-react-router-action-in-typescript
+    // https://dev.to/miracool/how-to-manage-user-authentication-with-react-js-3ic5
     // const jwt = await loginApi(email, password);
-    await fakeNetResult("test_fakeNetResult");
+    await fakeNetResult("test_handleLogin");
     console.log(`login: ${email}  ${password}`);
     const jwt = "jwt_token";
     setToken(jwt);
+    localStorage.setItem(tokenKey, jwt);
     // return success/fail for login action handler
+  }
+
+  const handleLogOut = async () => {
+    // 登出状态也可以考虑在服务端记录.
+    // const jwt = await loginApi(email, password);
+    await fakeNetResult("test_handleLogOut");
+    setToken("");
+    localStorage.removeItem(tokenKey);
+    redirect("/login");
   }
 
   useEffect(() => {
@@ -43,6 +57,7 @@ const AuthProvider = ({ children }:any) => {
       token,
       setToken,
       handleLogin: handleLogin,
+      handleLogOut
     }),
     [token]
   );

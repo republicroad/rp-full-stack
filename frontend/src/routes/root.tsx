@@ -3,7 +3,7 @@ import { ProtectedRoute } from "./ProtectedRoute";
 import {
     useNavigation,
   } from "react-router-dom";
-import SidebarWithHeader from "../components/sidebar";
+import SidebarWithHeader from "../pages/layout/sidebar";
 
 
 export default function Root() {
